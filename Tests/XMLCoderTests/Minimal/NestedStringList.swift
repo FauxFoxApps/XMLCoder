@@ -12,7 +12,6 @@ import XCTest
 @testable import XMLCoder
 
 class NestedStringList: XCTestCase {
-
     struct TypeWithNestedStringList: Decodable {
         let nestedStringList: [[String]]
 
@@ -24,7 +23,7 @@ class NestedStringList: XCTestCase {
             case member
         }
 
-        public init (from decoder: Decoder) throws {
+        public init(from decoder: Decoder) throws {
             let containerValues = try decoder.container(keyedBy: CodingKeys.self)
             let nestedStringListWrappedContainer = try containerValues.nestedContainer(keyedBy: NestedMemberKeys.self, forKey: .nestedStringList)
             let nestedStringListContainer = try nestedStringListWrappedContainer.decodeIfPresent([[String]].self, forKey: .member)
@@ -35,7 +34,7 @@ class NestedStringList: XCTestCase {
                 for listContainer0 in nestedStringListContainer {
                     listBuffer0 = [String]()
                     for stringContainer1 in listContainer0 {
-                            listBuffer0?.append(stringContainer1)
+                        listBuffer0?.append(stringContainer1)
                     }
                     if let listBuffer0 = listBuffer0 {
                         nestedStringListBuffer.append(listBuffer0)

@@ -15,11 +15,11 @@ final class CDATAMixedUsageTest: XCTestCase {
             case value = ""
         }
     }
-    
+
     private struct Container: Codable, Equatable {
         let data: [DataEntry]
     }
-    
+
     private let xml =
         """
         <container>
@@ -27,7 +27,7 @@ final class CDATAMixedUsageTest: XCTestCase {
            <data>bla bla</data>
         </container>
         """.data(using: .utf8)!
-    
+
     func testXMLWithMixedCDATAUsage() throws {
         let decoder = XMLDecoder()
         let result = try decoder.decode(Container.self, from: xml)

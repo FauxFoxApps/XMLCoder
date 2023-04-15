@@ -279,7 +279,7 @@ extension XMLKeyedDecodingContainer {
         if strategy(key) != .attribute, elements.isEmpty, attributes.isEmpty, type == String.self, key.stringValue == "", let emptyString = "" as? T {
             let cdata = container.withShared { keyedBox in
                 keyedBox.elements["#CDATA"].map {
-                    return ($0 as? KeyedBox)?.value ?? $0
+                    ($0 as? KeyedBox)?.value ?? $0
                 }
             }.first
             return ((cdata as? StringBox)?.unboxed as? T) ?? emptyString

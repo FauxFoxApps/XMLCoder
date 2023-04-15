@@ -70,14 +70,14 @@ class XMLElementTests: XCTestCase {
         typealias Element = XMLCoderElement
         let nested = Element(key: "Nested",
                              elements: [
-                                Element(key: "",
-                                        elements: [],
-                                        attributes: [
-                                            Attribute(key: "xsi:someName", value: "nestedAttrValue")
-                                        ]
-                                )],
+                                 Element(key: "",
+                                         elements: [],
+                                         attributes: [
+                                             Attribute(key: "xsi:someName", value: "nestedAttrValue"),
+                                         ]),
+                             ],
                              attributes: [
-                                Attribute(key: "xmlns:xsi", value: "https://example.com")
+                                 Attribute(key: "xmlns:xsi", value: "https://example.com"),
                              ])
         let inputNamespace = Attribute(key: "xmlns", value: "https://example.com")
         let input = Element(key: "Input",
@@ -103,18 +103,18 @@ class XMLElementTests: XCTestCase {
         typealias Element = XMLCoderElement
         let nested = Element(key: "Nested",
                              elements: [
-                                Element(key: "",
-                                        elements: [
-                                            Element(key: "nonAttrField",
-                                                    elements: [Element(key: "", stringValue: "hello")],
-                                                    attributes: [])
-                                        ],
-                                        attributes: [
-                                            Attribute(key: "xsi:someName", value: "nestedAttrValue")
-                                        ]
-                                )],
+                                 Element(key: "",
+                                         elements: [
+                                             Element(key: "nonAttrField",
+                                                     elements: [Element(key: "", stringValue: "hello")],
+                                                     attributes: []),
+                                         ],
+                                         attributes: [
+                                             Attribute(key: "xsi:someName", value: "nestedAttrValue"),
+                                         ]),
+                             ],
                              attributes: [
-                                Attribute(key: "xmlns:xsi", value: "https://example.com")
+                                 Attribute(key: "xmlns:xsi", value: "https://example.com"),
                              ])
         let inputNamespace = Attribute(key: "xmlns", value: "https://example.com")
         let input = Element(key: "Input",

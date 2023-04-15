@@ -128,15 +128,15 @@ struct XMLCoderElement: Equatable {
         indentation: XMLEncoder.PrettyPrintIndentation
     ) -> String {
         var base = ""
-        
+
         if let header = header, let headerXML = header.toXML() {
             base += headerXML
         }
-        
+
         if let doctype = doctype {
             base += doctype.toXML()
         }
-        
+
         return base + _toXMLString(escapedCharacters, formatting, indentation)
     }
 
@@ -232,7 +232,7 @@ struct XMLCoderElement: Equatable {
         _ string: inout String,
         _ charactersEscapedInAttributes: [(String, String)]
     ) {
-        let attributesBelongingToContainer = self.elements.filter {
+        let attributesBelongingToContainer = elements.filter {
             $0.key.isEmpty && !$0.attributes.isEmpty
         }.flatMap {
             $0.attributes
@@ -419,6 +419,6 @@ extension XMLCoderElement {
 extension XMLCoderElement {
     func isWhitespaceWithNoElements() -> Bool {
         let stringValueIsWhitespaceOrNil = stringValue?.isAllWhitespace() ?? true
-        return self.key == "" && stringValueIsWhitespaceOrNil && self.elements.isEmpty
+        return key == "" && stringValueIsWhitespaceOrNil && elements.isEmpty
     }
 }

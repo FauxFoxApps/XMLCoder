@@ -21,7 +21,7 @@ private let publicXML = """
 
 private struct CapitalizedItem: Codable, Equatable {
     public let text: String
-    
+
     enum CodingKeys: String, CodingKey {
         case text = "t"
     }
@@ -32,7 +32,7 @@ final class DocTypeTests: XCTestCase {
         let decoder = XMLDecoder()
         let decodedResult = try decoder.decode(CapitalizedItem.self, from: publicXML)
         XCTAssertEqual(decodedResult.text, "blah")
-        
+
         let encoder = XMLEncoder()
         let encoded = try encoder.encode(
             decodedResult,
@@ -43,18 +43,18 @@ final class DocTypeTests: XCTestCase {
                 dtdLocation: "http://example.com/myService_v1.dtd"
             )
         )
-        
+
         XCTAssertEqual(encoded, publicXML)
-        
+
         let decodedResult2 = try decoder.decode(CapitalizedItem.self, from: encoded)
         XCTAssertEqual(decodedResult, decodedResult2)
     }
-    
+
     func testSystemDocType() throws {
         let decoder = XMLDecoder()
         let decodedResult = try decoder.decode(CapitalizedItem.self, from: systemXML)
         XCTAssertEqual(decodedResult.text, "blah")
-        
+
         let encoder = XMLEncoder()
         let encoded = try encoder.encode(
             decodedResult,
@@ -64,9 +64,9 @@ final class DocTypeTests: XCTestCase {
                 dtdLocation: "http://example.com/myService_v1.dtd"
             )
         )
-        
+
         XCTAssertEqual(encoded, systemXML)
-        
+
         let decodedResult2 = try decoder.decode(CapitalizedItem.self, from: encoded)
         XCTAssertEqual(decodedResult, decodedResult2)
     }

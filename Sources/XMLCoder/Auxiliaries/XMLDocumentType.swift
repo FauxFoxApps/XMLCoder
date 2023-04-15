@@ -13,12 +13,12 @@ public struct XMLDocumentType {
         case `public` = "PUBLIC"
         case system = "SYSTEM"
     }
-    
+
     public let rootElement: String
     public let external: External
     public let dtdName: String?
     public let dtdLocation: String
-    
+
     internal init(
         rootElement: String,
         external: External,
@@ -30,7 +30,7 @@ public struct XMLDocumentType {
         self.dtdName = dtdName
         self.dtdLocation = dtdLocation
     }
-    
+
     public static func `public`(rootElement: String, dtdName: String, dtdLocation: String) -> XMLDocumentType {
         XMLDocumentType(
             rootElement: rootElement,
@@ -39,7 +39,7 @@ public struct XMLDocumentType {
             dtdLocation: dtdLocation
         )
     }
-    
+
     public static func system(rootElement: String, dtdLocation: String) -> XMLDocumentType {
         XMLDocumentType(
             rootElement: rootElement,
@@ -48,18 +48,18 @@ public struct XMLDocumentType {
             dtdLocation: dtdLocation
         )
     }
-    
+
     func toXML() -> String {
         var string = "<!DOCTYPE \(rootElement) \(external.rawValue)"
-        
+
         if let dtdName = dtdName {
             string += " \"\(dtdName)\""
         }
-        
+
         string += " \"\(dtdLocation)\""
-        
+
         string += ">\n"
-        
+
         return string
     }
 }
